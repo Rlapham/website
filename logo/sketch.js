@@ -1,4 +1,20 @@
-var distM; 
+var distMouse; 
+
+var distC; 
+var distY; 
+
+var mover;
+var attractor;
+
+var MposX = 0;
+var MposY = 0;
+var YposX;
+var YposY;
+var CposX;
+var CposY;
+
+var imgWidth = 300; 
+var imgHeight = 100; 
 
 function preload() {
   imgC = loadImage("richC.png");
@@ -17,7 +33,7 @@ function drawChannel(image, x, y) {
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(imgWidth, imgHeight);
 
 }
 
@@ -27,27 +43,80 @@ function draw(){
   imgM.loadPixels();
   imgY.loadPixels();  
   imgK.loadPixels();
-  distM = dist(imgM.width/3, imgM.height/3, mouseX, mouseY); 
-  console.log(distM); 
-  console.log(imgM.width); 
+  distMouse = dist(imgM.width/3, imgM.height/3, mouseX, mouseY); 
 
-if (distM < 250){
-
+if (distMouse < 250){
 blendMode(BLEND);
-image(imgM, 0, 0);
+image(imgM, MposX, MposY, imgWidth, imgHeight);
 
-push();
-translate(mouseX/20, mouseY/20);
-image(imgY, 0, 0);
-pop(); 
 
-push();
-translate(-mouseX/20, -mouseY/20);
-image(imgC, 0, 0);
-pop(); 
-} else {
-image(imgK, 0, 0);
+YposX = mouseX/20;
+YposY = mouseY/20; 
+image(imgY, YposX, YposY, imgWidth, imgHeight);
+
+CposX = -mouseX/20;
+CposY = -mouseY/20;
+image(imgC, CposX, CposY, imgWidth, imgHeight);
+
+
 }
+
+///Animate
+
+if (distMouse > 250){
+YdistX = dist(YposX, YposX, 0, 0); 
+YdistY = dist(YposY, YposY, 0, 0); 
+
+CdistX = dist(CposX, CposX, 0, 0); 
+CdistY = dist(CposY, CposY, 0, 0); 
+
+image(imgM, MposX, MposY, imgWidth, imgHeight);
+
+///yellow
+//x
+if (YdistX > 0){
+  YposX -= .5; 
+} 
+if (YdistX <= .5){
+  YposX = 0; 
+}
+//y
+if (YdistY > 0){
+  YposY -= .5; 
+} 
+if (YdistY <= .5){
+  YposY = 0; 
+}
+image(imgY, YposX, YposY, imgWidth, imgHeight);
+
+////cyan 
+
+//x
+if (CdistX > 0){
+  CposX += .5; 
+} 
+if (CdistX <= .5){
+  CposX = 0; 
+}
+//y
+if (CdistY > 0){
+  CposY += .5; 
+} 
+if (CdistY <= .5){
+  CposY = 0; 
+}
+image(imgC, CposX, CposY, imgWidth, imgHeight);
+
+}
+
+
+
+
+
+
+// } else {
+// image(imgK, 0, 0);
+// }
 
 
   // var x0 = 20;
