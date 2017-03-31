@@ -3,8 +3,9 @@ var distMouse;
 var distC; 
 var distY; 
 
-var mover;
-var attractor;
+// var bob;
+// var spring;
+
 
 var MposX = 0;
 var MposY = 0;
@@ -12,6 +13,7 @@ var YposX;
 var YposY;
 var CposX;
 var CposY;
+
 
 var imgWidth = 350; 
 var imgHeight = 100; 
@@ -34,6 +36,9 @@ function drawChannel(image, x, y) {
 
 function setup() {
   createCanvas(imgWidth, imgHeight);
+    // Note third argument in Spring constructor is "rest length"
+  // spring = new Spring(width/2, 10, 100);
+  // bob = new Bob(width/2, 100);
 
 }
 
@@ -42,27 +47,53 @@ function draw(){
   imgC.loadPixels();
   imgM.loadPixels();
   imgY.loadPixels();  
-  imgK.loadPixels();
-  distMouse = dist(imgM.width/3, imgM.height/3, mouseX, mouseY); 
+  imgK.loadPixels(); 
+
+  // ///spring
+  //   // Apply a gravity force to the bob
+  // var gravity = createVector(0,2);
+  // bob.applyForce(gravity);
+  
+  // // Connect the bob to the spring (this calculates the force)
+  // spring.connect(bob);
+  // // Constrain spring distance between min and max
+  // spring.constrainLength(bob, 30, 200);
+  
+  // // Update bob
+  // bob.update();
+  
+  // // Draw everything
+  // spring.displayLine(bob); 
+  // bob.display();
+  // spring.display();
+
+  ///////
+  distMouse = dist(imgM.width/3, imgM.height/3, mouseX, mouseY);
+
 
 if (distMouse < 250){
-blendMode(BLEND);
+blendMode(MULTIPLY);
 image(imgM, MposX, MposY, imgWidth, imgHeight);
 
 
-YposX = mouseX/20;
-YposY = mouseY/20; 
+YposX = mouseX/80;
+YposY =  mouseY/80; 
 image(imgY, YposX, YposY, imgWidth, imgHeight);
 
-CposX = -mouseX/20;
-CposY = -mouseY/20;
+CposX = -mouseX/80;
+CposY = -mouseY/80;
 image(imgC, CposX, CposY, imgWidth, imgHeight);
 
 
 }
+blendMode(ADD);
+
+
 ///Animate
 
+
 if (distMouse > 250){
+blendMode(MULTIPLY);
 YdistX = dist(YposX, YposX, 0, 0); 
 YdistY = dist(YposY, YposY, 0, 0); 
 
@@ -107,7 +138,7 @@ image(imgC, CposX, CposY, imgWidth, imgHeight);
 
 }
 
-
+blendMode(ADD);
 
 
 
