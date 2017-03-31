@@ -13,7 +13,7 @@ var YposY;
 var CposX;
 var CposY;
 
-var imgWidth = 300; 
+var imgWidth = 350; 
 var imgHeight = 100; 
 
 function preload() {
@@ -27,7 +27,7 @@ function preload() {
 function drawChannel(image, x, y) {
     var u = 60;
     var v = 60;
-    blend(image, 0, 0, u, v,  x - 0.5 * u, y - 0.5 * v, u, v, blendMode(MULTIPLY));
+    blend(image, 0, 0, u, v,  x - 0.5 * u, y - 0.5 * v, u, v, blendMode(ADD));
 }
 
 
@@ -60,7 +60,6 @@ image(imgC, CposX, CposY, imgWidth, imgHeight);
 
 
 }
-
 ///Animate
 
 if (distMouse > 250){
@@ -88,7 +87,6 @@ if (YdistY <= .5){
   YposY = 0; 
 }
 image(imgY, YposX, YposY, imgWidth, imgHeight);
-
 ////cyan 
 
 //x
