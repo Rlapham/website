@@ -20,7 +20,7 @@ var Spring = function(x, y, l) {
     var stretch = d - this.restLength;
 
     // Calculate force according to Hooke's Law
-    // F = k * stretch
+    F = k * stretch
     force.normalize();
     force.mult(-1 * this.k * stretch);
     b.applyForce(force);

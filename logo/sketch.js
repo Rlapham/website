@@ -3,8 +3,13 @@ var distMouse;
 var distC; 
 var distY; 
 
-// var bob;
-// var spring;
+var bug;  
+
+//ball 
+var ballX = 0;
+var ballY = 20; 
+var xspeed = 10;
+var yspeed = 10;
 
 
 var MposX = 0;
@@ -36,9 +41,7 @@ function drawChannel(image, x, y) {
 
 function setup() {
   createCanvas(imgWidth, imgHeight);
-    // Note third argument in Spring constructor is "rest length"
-  // spring = new Spring(width/2, 10, 100);
-  // bob = new Bob(width/2, 100);
+  bug = new Jitter();
 
 }
 
@@ -49,26 +52,12 @@ function draw(){
   imgY.loadPixels();  
   imgK.loadPixels(); 
 
-  // ///spring
-  //   // Apply a gravity force to the bob
-  // var gravity = createVector(0,2);
-  // bob.applyForce(gravity);
-  
-  // // Connect the bob to the spring (this calculates the force)
-  // spring.connect(bob);
-  // // Constrain spring distance between min and max
-  // spring.constrainLength(bob, 30, 200);
-  
-  // // Update bob
-  // bob.update();
-  
-  // // Draw everything
-  // spring.displayLine(bob); 
-  // bob.display();
-  // spring.display();
+  bug.move();
+  bug.display();
 
-  ///////
-  distMouse = dist(imgM.width/3, imgM.height/3, mouseX, mouseY);
+
+///////
+distMouse = dist(imgM.width/3, imgM.height/3, bug.x, bug.y);
 
 
 if (distMouse < 250){
@@ -76,16 +65,16 @@ blendMode(MULTIPLY);
 image(imgM, MposX, MposY, imgWidth, imgHeight);
 
 
-YposX = mouseX/80;
-YposY =  mouseY/80; 
+YposX = bug.x/80;
+YposY =  bug.y/80; 
 image(imgY, YposX, YposY, imgWidth, imgHeight);
 
-CposX = -mouseX/80;
-CposY = -mouseY/80;
+CposX = -bug.x/80;
+CposY = -bug.y/80;
 image(imgC, CposX, CposY, imgWidth, imgHeight);
-
-
 }
+
+
 blendMode(ADD);
 
 
@@ -141,21 +130,31 @@ image(imgC, CposX, CposY, imgWidth, imgHeight);
 blendMode(ADD);
 
 
+} // end draw
 
+   // Jitter class
+function Jitter() {
+  this.x = 0;
+  this.y = 0;
+  this.diameter = 10;
+  this.speed = 1;
 
-// } else {
-// image(imgK, 0, 0);
-// }
+  this.move = function() {
+    this.x = this.x + xspeed;
+    this.y = this.y + yspeed;
+      if (this.x > windowWidth || this.x < 0)  {
+      xspeed = -xspeed;
+    }
 
+    if (this.y > windowHeight || this.y < 0) {
+      yspeed = -yspeed;
+    }
+  };
 
-  // var x0 = 20;
-  // var y0 = 20;
-  // var dmouseX = mouseX - pmouseX;
-  // var dmouseY = mouseY - pmouseY;
-  //   background(255);
-  //   noStroke();
-  //   drawChannel(imgY, x0 - dmouseX, y0 - dmouseY);
-  //   drawChannel(imgM, x0, y0);
-  //   drawChannel(imgC, x0 + dmouseX, y0 + dmouseY);
+  this.display = function() {
+    fill(255);
+    noStroke(); 
+    ellipse(this.x, this.y, this.diameter, this.diameter);
+  }
+};
 
-}
