@@ -9,7 +9,7 @@ var bug;
 var xspeed = 10;
 var yspeed = 0;
 
-var divNum = 1.5; 
+var divNum = 1.6; 
 
 
 var MposX = 0;
@@ -20,8 +20,8 @@ var CposX;
 var CposY;
 
 
-var imgWidth = 350/divNum; 
-var imgHeight = 100/divNum; 
+var imgWidth = 393/divNum; 
+var imgHeight = 94/divNum; 
 
 function preload() {
   imgC = loadImage("richC.png");
