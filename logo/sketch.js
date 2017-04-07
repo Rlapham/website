@@ -18,8 +18,8 @@ var CposX;
 var CposY;
 
 
-var imgWidth = 350; 
-var imgHeight = 100; 
+var imgWidth = 350/1.5; 
+var imgHeight = 100/1.5; 
 
 function preload() {
   imgC = loadImage("richC.png");
@@ -141,11 +141,11 @@ function Jitter() {
     this.x = this.x + xspeed;
     this.y = this.y + yspeed;
 
-    if (this.x > 3000 || this.x < 0)  {
+    if (this.x > 3600 || this.x < 0)  {
       xspeed = -xspeed;
     }
 
-    if (this.y > 3000 || this.y < 0) {
+    if (this.y > 3600 || this.y < 0) {
       yspeed = -yspeed;
     }
   };
