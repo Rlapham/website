@@ -9,6 +9,8 @@ var bug;
 var xspeed = 10;
 var yspeed = 0;
 
+var divNum = 1.5; 
+
 
 var MposX = 0;
 var MposY = 0;
@@ -18,8 +20,8 @@ var CposX;
 var CposY;
 
 
-var imgWidth = 350/1.5; 
-var imgHeight = 100/1.5; 
+var imgWidth = 350/divNum; 
+var imgHeight = 100/divNum; 
 
 function preload() {
   imgC = loadImage("richC.png");
@@ -63,12 +65,12 @@ blendMode(MULTIPLY);
 image(imgM, MposX, MposY, imgWidth, imgHeight);
 
 
-YposX = bug.x/80;
-YposY =  bug.y/80; 
+YposX = (bug.x/80)/divNum;
+YposY =  (bug.y/80)/divNum; 
 image(imgY, YposX, YposY, imgWidth, imgHeight);
 
-CposX = -bug.x/80;
-CposY = -bug.y/80;
+CposX = (-bug.x/80)/divNum;
+CposY = (-bug.y/80)/divNum;
 image(imgC, CposX, CposY, imgWidth, imgHeight);
 }
 
