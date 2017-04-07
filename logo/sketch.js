@@ -6,10 +6,8 @@ var distY;
 var bug;  
 
 //ball 
-var ballX = 0;
-var ballY = 20; 
 var xspeed = 10;
-var yspeed = 10;
+var yspeed = 0;
 
 
 var MposX = 0;
@@ -142,11 +140,12 @@ function Jitter() {
   this.move = function() {
     this.x = this.x + xspeed;
     this.y = this.y + yspeed;
-      if (this.x > windowWidth || this.x < 0)  {
+
+    if (this.x > 3000 || this.x < 0)  {
       xspeed = -xspeed;
     }
 
-    if (this.y > windowHeight || this.y < 0) {
+    if (this.y > 3000 || this.y < 0) {
       yspeed = -yspeed;
     }
   };
