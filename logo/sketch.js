@@ -20,8 +20,8 @@ var CposX;
 var CposY;
 
 
-var imgWidth = 393/divNum; 
-var imgHeight = 94/divNum; 
+var imgWidth = 293/divNum; 
+var imgHeight = 63/divNum; 
 
 function preload() {
   imgC = loadImage("richC.png");
