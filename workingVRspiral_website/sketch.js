@@ -7,6 +7,8 @@ var wrap2;
 var wrap3; 
 var mapX; 
 var mapY = 100; 
+var change = 0; 
+var changeBool = false; 
 
 // function preload(){
    wrap = loadImage("dark.png");
@@ -26,13 +28,22 @@ function draw(){
   //drag to move the world.
  orbitControl();
  
- translate(0, 0, -3000); 
+ translate(0, 0, -2000); 
 //  ambientLight(100, 80, 80);
  texture(wrap);
 
  for(var r = 0; r < 8; r++){
 //  translate(0, 0, 100); 
-mapX = map(mouseX, 0, windowWidth, 0, 1); 
+
+if (!changeBool) change+= .7; 
+if (changeBool) change-= .7; 
+
+if (change >= windowWidth) changeBool = true; 
+if (change <= 0) changeBool = false; 
+console.log(change); 
+
+
+mapX = map(change, 0, windowWidth, 0, 1); 
 rotateY(mapX); 
  for(var j = 0; j < 1; j++){
     push();
